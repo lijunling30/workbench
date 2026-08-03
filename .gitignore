@@ -19,3 +19,9 @@ node_modules/
 # 临时文件
 *.log
 *.tmp
+
+# 环境与数据库（含 API 密钥）
+.env
+backend/.env
+*.db
+

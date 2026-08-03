@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-violet: #7f77dd;
+  --c-cyan: #1d9e75;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  @apply bg-abyss-950 text-gray-200 font-body antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(127, 119, 221, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 100%, rgba(29, 158, 117, 0.06), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* 玻璃拟态浮层（PRD 8.6.1） */
+.glass {
+  @apply bg-abyss-800/70 backdrop-blur-xl border border-white/10 rounded-glass shadow-card;
+}
+
+/* 品牌渐变文字 */
+.grad-text {
+  background: linear-gradient(120deg, #a5a0f2, #7f77dd 45%, #1d9e75);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 按钮 */
+.btn-primary {
+  @apply px-4 py-2 rounded-xl font-medium transition-all duration-200
+         bg-gradient-to-r from-brand-violet to-brand-cyan text-white
+         hover:opacity-90 hover:shadow-glow active:scale-[0.98]
+         disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none;
+}
+.btn-ghost {
+  @apply px-4 py-2 rounded-xl font-medium transition-all duration-200
+         border border-white/10 text-gray-300
+         hover:bg-white/5 hover:border-white/20 active:scale-[0.98];
+}
+.btn-danger {
+  @apply px-4 py-2 rounded-xl font-medium transition-all duration-200
+         bg-red-500/15 text-red-300 border border-red-500/30
+         hover:bg-red-500/25 active:scale-[0.98];
+}
+
+/* 卡片 */
+.panel {
+  @apply glass p-5;
+}
+
+/* 输入框 */
+.input {
+  @apply w-full px-3 py-2 rounded-xl bg-abyss-900/80 border border-white/10
+         text-gray-200 placeholder-gray-500 outline-none
+         focus:border-brand-violet/60 focus:ring-2 focus:ring-brand-violet/20 transition-all;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(127,119,221,0.25); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* 动效：cubic-bezier(0.16,1,0.3,1)（PRD 8.6.1） */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1); }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+.pop-enter-active { transition: all 0.28s cubic-bezier(0.16,1,0.3,1); }
+.pop-leave-active { transition: all 0.2s cubic-bezier(0.16,1,0.3,1); }
+.pop-enter-from, .pop-leave-to { opacity: 0; transform: translateY(8px) scale(0.98); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
